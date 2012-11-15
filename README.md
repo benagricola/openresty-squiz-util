@@ -1,7 +1,6 @@
 # Util
 
-A [Lua](http://www.lua.org) module for [OpenResty](http://openresty.org) to expand the functionality provided by OpenResty itself, by providing an error-tolerant set of tools to allow for the succinct implementation of simple logic directly in the webserver configuration file.  
-
+A [Lua](http://www.lua.org) module for [OpenResty](http://openresty.org) to provide an error-tolerant set of tools allowing for the succinct implementation of logic directly in the webserver configuration file. 
 
 ## An Example
 Implement an authentication rewrite to redirect authenticated users on HTTP to HTTPS, and unauthenticated users on HTTPS to HTTP. User details are stored in memcache and the memcache key is stored in a HTTP cookie called `authentication_cookie`. Users are authenticated by matching two strings `string-1-to-find-in-session` and `string-2-to-find-in-session` in the session data retrieved from memcache, and a redirection is triggered to the new `$scheme` if required.
