@@ -1,4 +1,4 @@
-# Util
+# Squiz Utils
 
 A [Lua](http://www.lua.org) module for [OpenResty](http://openresty.org) to provide an error-tolerant set of tools allowing for the succinct implementation of logic directly in the webserver configuration file. 
 
@@ -18,10 +18,10 @@ http {
     ssl_certificate_key  ../ssl/localssl.key;
 
     init_by_lua '
-        require "util.misc"
-        require "util.regex"
-        require "util.actions"
-        require "util.memcache"
+        require "squizutil.misc"
+        require "squizutil.regex"
+        require "squizutil.actions"
+        require "squizutil.memcache"
     ';
 
 	upstream hosts-http { server upstream:80; }
@@ -29,13 +29,13 @@ http {
 
 	location / {
 	    rewrite_by_lua '
-	        local authed = util.regex.match_all({
+	        local authed = squizutil.regex.match_all({
 	            [[string-1-to-find-in-session]],
 	            [[string-2-to-find-in-session]]
-	        },util.memcache.get("127.0.0.1",11211,util.misc.get_cookie("authentication_cookie")))
+	        },squizutil.memcache.get("127.0.0.1",11211,squizutil.misc.get_cookie("authentication_cookie")))
 
 	        if (authed and ngx.var.scheme == "http") or (not authed and ngx.var.scheme == "https") then
-	            util.actions.redirect_flip_scheme()
+	            squizutil.actions.redirect_flip_scheme()
 	        end
 	    ';
 
@@ -50,13 +50,13 @@ http {
 
 ## Author
 
-Ben Agricola <bagricola@squiz.co.uk>
+Ben Agricola <bagricola@squizutil.co.uk>
 
 ## Licence
 
 This module is licensed under the 2-clause BSD license.
 
-Copyright (c) 2012, Ben Agricola <bagricola@squiz.co.uk>
+Copyright (c) 2012, Ben Agricola <bagricola@squizutil.co.uk>
 
 All rights reserved.
 

@@ -1,4 +1,4 @@
-module('util.memcache', package.seeall)
+module('squiz.memcache', package.seeall)
 local memcached = require "resty.memcached"
 
 _VERSION = '0.02'
