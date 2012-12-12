@@ -1,4 +1,4 @@
-module('squiz.misc', package.seeall)
+module('squtil.misc', package.seeall)
 _VERSION = '0.01'
 
 function get_cookie(cookie)

@@ -18,10 +18,10 @@ http {
     ssl_certificate_key  ../ssl/localssl.key;
 
     init_by_lua '
-        require "squizutil.misc"
-        require "squizutil.regex"
-        require "squizutil.actions"
-        require "squizutil.memcache"
+        require "squtil.misc"
+        require "squtil.regex"
+        require "squtil.actions"
+        require "squtil.memcache"
     ';
 
 	upstream hosts-http { server upstream:80; }
@@ -29,13 +29,13 @@ http {
 
 	location / {
 	    rewrite_by_lua '
-	        local authed = squizutil.regex.match_all({
+	        local authed = squtil.regex.match_all({
 	            [[string-1-to-find-in-session]],
 	            [[string-2-to-find-in-session]]
-	        },squizutil.memcache.get("127.0.0.1",11211,squizutil.misc.get_cookie("authentication_cookie")))
+	        },squtil.memcache.get("127.0.0.1",11211,squtil.misc.get_cookie("authentication_cookie")))
 
 	        if (authed and ngx.var.scheme == "http") or (not authed and ngx.var.scheme == "https") then
-	            squizutil.actions.redirect_flip_scheme()
+	            squtil.actions.redirect_flip_scheme()
 	        end
 	    ';
 
@@ -50,13 +50,13 @@ http {
 
 ## Author
 
-Ben Agricola <bagricola@squizutil.co.uk>
+Ben Agricola <bagricola@squtil.co.uk>
 
 ## Licence
 
 This module is licensed under the 2-clause BSD license.
 
-Copyright (c) 2012, Ben Agricola <bagricola@squizutil.co.uk>
+Copyright (c) 2012, Ben Agricola <bagricola@squtil.co.uk>
 
 All rights reserved.
 

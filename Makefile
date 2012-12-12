@@ -11,5 +11,5 @@ INSTALL ?= install
 all: ;
 
 install: all
-	$(INSTALL) -d $(DESTDIR)/$(LUA_LIB_DIR)/util
-	$(INSTALL) lib/util/*.lua $(DESTDIR)/$(LUA_LIB_DIR)/util
+	$(INSTALL) -d $(DESTDIR)/$(LUA_LIB_DIR)/squtil
+	$(INSTALL) lib/squtil/*.lua $(DESTDIR)/$(LUA_LIB_DIR)/squtil

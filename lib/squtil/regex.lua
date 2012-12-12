@@ -1,4 +1,4 @@
-module('squiz.regex', package.seeall)
+module('squtil.regex', package.seeall)
 _VERSION = '0.011'
 
 function match_all(expressions,string)

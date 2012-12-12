@@ -1,11 +1,11 @@
-module('squizutil.actions', package.seeall)
+module('squtil.actions', package.seeall)
 _VERSION = '0.02'
 
-require "squizutil.url"
+require "squtil.url"
 
 -- Flips the scheme of an nginx request 
 function redirect_flip_scheme()
-    ngx.redirect(squizutil.url.full((ngx.var.scheme == 'http') 
+    ngx.redirect(squtil.url.full((ngx.var.scheme == 'http') 
     	and 'https' or 'http'),ngx.HTTP_MOVED_TEMPORARILY)
     return ngx.exit(ngx.HTTP_SPECIAL_RESPONSE) 
 end
@@ -15,7 +15,7 @@ end
 -- otherwise simply redirects to the given path.
 function redirect_path(path,append)
 	if append then
-		path = squizutil.url.relative(ngx.var.uri .. path)
+		path = squtil.url.relative(ngx.var.uri .. path)
 	end
 
 	ngx.redirect(path,ngx.HTTP_MOVED_TEMPORARILY)

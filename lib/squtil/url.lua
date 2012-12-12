@@ -1,4 +1,4 @@
-module('squizutil.url', package.seeall)
+module('squtil.url', package.seeall)
 _VERSION = '0.01'
 
 -- Return the current relative URL, optionally overriding each part of it 
