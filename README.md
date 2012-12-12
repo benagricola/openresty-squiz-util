@@ -50,13 +50,13 @@ http {
 
 ## Author
 
-Ben Agricola <bagricola@squtil.co.uk>
+Ben Agricola <bagricola@squiz.co.uk>
 
 ## Licence
 
 This module is licensed under the 2-clause BSD license.
 
-Copyright (c) 2012, Ben Agricola <bagricola@squtil.co.uk>
+Copyright (c) 2012, Ben Agricola <bagricola@squiz.co.uk>
 
 All rights reserved.
 
