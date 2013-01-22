@@ -1,5 +1,4 @@
 OPENRESTY_PREFIX=/usr/local/openresty-debug
-TEST_LEDGE_REDIS_DATABASE=1
 
 PREFIX ?=          /usr/local
 LUA_INCLUDE_DIR ?= $(PREFIX)/include
