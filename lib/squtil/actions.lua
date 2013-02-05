@@ -4,13 +4,13 @@ local require = require
 local ngx = ngx
 module(...)
 
-_VERSION = '0.03'
+_VERSION = '0.04'
 
-require "squtil.url"
+local url = require "squtil.url"
 
 -- Flips the scheme of an nginx request 
 function redirect_flip_scheme()
-    return ngx.redirect(squtil.url.full((ngx.var.scheme == 'http') 
+    return ngx.redirect(url.full((ngx.var.scheme == 'http') 
         and 'https' or 'http'),ngx.HTTP_MOVED_TEMPORARILY)
 end
 
@@ -19,7 +19,7 @@ end
 -- otherwise simply redirects to the given path.
 function redirect_path(path,append)
     if append then
-        local path = squtil.url.relative(ngx.var.uri .. path)
+        local path = url.relative(ngx.var.uri .. path)
     end
 
     return ngx.redirect(path,ngx.HTTP_MOVED_TEMPORARILY)
