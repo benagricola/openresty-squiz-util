@@ -1,7 +1,12 @@
-module('squtil.memcache', package.seeall)
-local memcached = require "resty.memcached"
+local setmetatable = setmetatable
+local error = error
+local require = require
+local ngx = ngx
+module(...)
 
-_VERSION = '0.02'
+_VERSION = '0.03'
+
+local memcached = require "resty.memcached"
 
 function connect(host,port,timeout)
     if not host or not port then
@@ -9,12 +14,12 @@ function connect(host,port,timeout)
         return nil
     end
 
-    memcache, err = memcached:new()
+    local memcache, err = memcached:new()
     if err then 
         ngx.log(ngx.ERR,"Unable to instantiate resty.memcached") 
         return nil
     end
-
+    
     memcache:set_timeout(timeout or 1000)
 
     local ok, err = memcache:connect(host,port)
@@ -34,7 +39,7 @@ end
 
 -- Connects, retrieves a key and then disconnects (setkeepalives) from memcache
 function get(host,port,key)
-    memcache = connect(host,port)
+    local memcache = connect(host,port)
     -- If we couldn't get a memcache connection, then just return nothing
     -- - connect produces its own error messages.
     if not memcache then
@@ -63,3 +68,12 @@ function get(host,port,key)
 
     return res
 end
+
+local class_mt = {
+    -- to prevent use of casual module global variables
+    __newindex = function (table, key, val)
+        error('attempt to write to undeclared variable "' .. key .. '"')
+    end
+}
+setmetatable(_M, class_mt)
+

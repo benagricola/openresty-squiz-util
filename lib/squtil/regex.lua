@@ -1,5 +1,12 @@
-module('squtil.regex', package.seeall)
-_VERSION = '0.011'
+local setmetatable = setmetatable
+local error = error
+local require = require
+local pairs = pairs
+local type = type
+local ngx = ngx
+module(...)
+
+_VERSION = '0.02'
 
 function match_all(expressions,string)
     return match_multi(expressions,string)
@@ -26,3 +33,11 @@ function match_multi(expressions,string,flip)
     end
     return not flip
 end
+
+local class_mt = {
+    -- to prevent use of casual module global variables
+    __newindex = function (table, key, val)
+        error('attempt to write to undeclared variable "' .. key .. '"')
+    end
+}
+setmetatable(_M, class_mt)
