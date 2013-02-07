@@ -1,4 +1,5 @@
 local setmetatable = setmetatable
+local string = string
 local error = error
 local ngx = ngx
 module(...)

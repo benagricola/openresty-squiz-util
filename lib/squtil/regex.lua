@@ -1,5 +1,6 @@
 local setmetatable = setmetatable
 local error = error
+local string = string
 local require = require
 local pairs = pairs
 local type = type

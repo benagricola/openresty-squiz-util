@@ -1,4 +1,5 @@
 local setmetatable = setmetatable
+local string = string
 local error = error
 local require = require
 local ngx = ngx
